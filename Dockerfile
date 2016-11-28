@@ -10,6 +10,9 @@ RUN apk --update upgrade && \
 # install requirements for app.
 RUN pip install -r requirements.txt
 
-EXPOSE 53627
+# install gunicorn
+RUN pip install gunicorn
 
-CMD [ "python3", "app.py" ]
+EXPOSE 53628
+
+CMD [ "/usr/local/bin/gunicorn", "-b", ":53628", "-w", "4", "-t", "0", "--reload", "-p", "ytviewer.pid", "app:app" ]
