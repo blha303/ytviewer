@@ -14,7 +14,7 @@ def index():
 
 @app.route("/fmt/<id>")
 def formats(id):
-    return jsonify({"formats": sorted([f["format_id"] for f in getinfo(id)["formats"]])})
+    return jsonify({"formats": sorted([f["format"] for f in getinfo(id)["formats"]])})
 
 @app.route("/v/<id>")
 @app.route("/v/<id>/<fmt>")
