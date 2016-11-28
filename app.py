@@ -27,7 +27,7 @@ def vid(id, fmt=None):
     else:
         url = info["22" if "22" in info else "18"]["url"]
     req = get(url, stream=True)
-    return Response(stream_with_context(req.iter_content()),
+    return Response(stream_with_context(req.iter_content(chunk_size=128)),
                     content_type=req.headers['content-type'])
 
 if __name__ == "__main__":
